@@ -11,4 +11,5 @@ extension Color {
     static let dhPrimaryText: Color = Color("PrimaryText")
     static let dhSecondaryText: Color = Color("SecondaryText")
     static let dhDivider: Color = Color("Divider")
+    static let dhSearchField: Color = Color("SearchField")
 }
