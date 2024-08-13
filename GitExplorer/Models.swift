@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Repository: Equatable {
+struct Repository: Equatable, Identifiable {
     var id: String
     var name: String
     var iconURL: URL?

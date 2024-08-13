@@ -15,6 +15,8 @@
 		AED631352C6B5BBC00EABD11 /* SearchReposView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED631342C6B5BBC00EABD11 /* SearchReposView.swift */; };
 		AED631372C6B5BD200EABD11 /* ShowRepoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED631362C6B5BD200EABD11 /* ShowRepoView.swift */; };
 		AED6313B2C6B62B300EABD11 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED6313A2C6B62B300EABD11 /* Models.swift */; };
+		AED6313D2C6B723800EABD11 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED6313C2C6B723800EABD11 /* Colors.swift */; };
+		AED6313F2C6B782800EABD11 /* RepoIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED6313E2C6B782800EABD11 /* RepoIconView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +48,8 @@
 		AED631342C6B5BBC00EABD11 /* SearchReposView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchReposView.swift; sourceTree = "<group>"; };
 		AED631362C6B5BD200EABD11 /* ShowRepoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowRepoView.swift; sourceTree = "<group>"; };
 		AED6313A2C6B62B300EABD11 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		AED6313C2C6B723800EABD11 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		AED6313E2C6B782800EABD11 /* RepoIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoIconView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,9 +101,11 @@
 			children = (
 				AED6310A2C6B5A4200EABD11 /* GitExplorerApp.swift */,
 				AED6313A2C6B62B300EABD11 /* Models.swift */,
+				AED6313C2C6B723800EABD11 /* Colors.swift */,
 				AED6310C2C6B5A4200EABD11 /* SplashView.swift */,
 				AED631342C6B5BBC00EABD11 /* SearchReposView.swift */,
 				AED631362C6B5BD200EABD11 /* ShowRepoView.swift */,
+				AED6313E2C6B782800EABD11 /* RepoIconView.swift */,
 				AED6310E2C6B5A4500EABD11 /* Assets.xcassets */,
 				AED631102C6B5A4500EABD11 /* Preview Content */,
 			);
@@ -254,9 +260,11 @@
 			files = (
 				AED6310D2C6B5A4200EABD11 /* SplashView.swift in Sources */,
 				AED631352C6B5BBC00EABD11 /* SearchReposView.swift in Sources */,
+				AED6313D2C6B723800EABD11 /* Colors.swift in Sources */,
 				AED6313B2C6B62B300EABD11 /* Models.swift in Sources */,
 				AED6310B2C6B5A4200EABD11 /* GitExplorerApp.swift in Sources */,
 				AED631372C6B5BD200EABD11 /* ShowRepoView.swift in Sources */,
+				AED6313F2C6B782800EABD11 /* RepoIconView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

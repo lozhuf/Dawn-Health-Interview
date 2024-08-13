@@ -18,31 +18,18 @@ struct ShowRepoView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .center, spacing: 0) {
-                AsyncImage(
-                    url: repo.iconURL,
-                    transaction: .init(animation: .default)
-                ) { phase in
-                    if let image = phase.image {
-                        image
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                    } else if phase.error != nil {
-                        missingRepoIconView()
-                    } else {
-                        Color(red: 233/255, green: 250/255, blue: 250/255)
-                    }
-                }
+                RepoIconView(url: repo.iconURL)
                 .cornerRadius(6)
                 .frame(width: 100, height: 100)
                 .padding(.bottom, 14)
                 
                 Text("\(repo.name) / \(repo.orgName)")
                     .font(.system(size: 16, weight: .medium))
-                    .foregroundColor(Color("PrimaryText"))
+                    .foregroundColor(.dhPrimaryText)
                     .padding(.bottom, 6)
                 Text("\(repo.language)")
                     .font(.system(size: 14, weight: .regular))
-                    .foregroundColor(Color("SecondaryText"))
+                    .foregroundColor(.dhSecondaryText)
                     .padding(.bottom, 30)
                 
                 VStack(spacing: 0) {
@@ -58,7 +45,7 @@ struct ShowRepoView: View {
                 .padding(.vertical, 6) // on top of the dataRow's padding
                 .overlay(
                     RoundedRectangle(cornerRadius: 6)
-                        .stroke(Color("Divider"), lineWidth: 0.5)
+                        .stroke(Color.dhDivider, lineWidth: 0.5)
                 )
                 
                 Spacer()
@@ -87,17 +74,17 @@ struct ShowRepoView: View {
             Text(value)
         }
         .font(.system(size: 14, weight: .regular))
-        .foregroundColor(Color("PrimaryText"))
+        .foregroundColor(.dhPrimaryText)
         .padding(.vertical, 14)
         
         if showDivider {
             Rectangle()
-                .fill(Color("Divider"))
+                .fill(Color.dhDivider)
                 .frame(height: 0.5)
         }
     }
 }
 
 #Preview {
-    ShowRepoView(repo: .dummy_a)
+    ShowRepoView(repo: .dummy_b)
 }
