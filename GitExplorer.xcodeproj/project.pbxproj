@@ -14,6 +14,7 @@
 		AED6311C2C6B5A4600EABD11 /* GitExplorerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED6311B2C6B5A4600EABD11 /* GitExplorerTests.swift */; };
 		AED631352C6B5BBC00EABD11 /* SearchReposView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED631342C6B5BBC00EABD11 /* SearchReposView.swift */; };
 		AED631372C6B5BD200EABD11 /* ShowRepoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED631362C6B5BD200EABD11 /* ShowRepoView.swift */; };
+		AED6313B2C6B62B300EABD11 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED6313A2C6B62B300EABD11 /* Models.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		AED631212C6B5A4600EABD11 /* GitExplorerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GitExplorerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AED631342C6B5BBC00EABD11 /* SearchReposView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchReposView.swift; sourceTree = "<group>"; };
 		AED631362C6B5BD200EABD11 /* ShowRepoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowRepoView.swift; sourceTree = "<group>"; };
+		AED6313A2C6B62B300EABD11 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				AED6310A2C6B5A4200EABD11 /* GitExplorerApp.swift */,
+				AED6313A2C6B62B300EABD11 /* Models.swift */,
 				AED6310C2C6B5A4200EABD11 /* SplashView.swift */,
 				AED631342C6B5BBC00EABD11 /* SearchReposView.swift */,
 				AED631362C6B5BD200EABD11 /* ShowRepoView.swift */,
@@ -251,6 +254,7 @@
 			files = (
 				AED6310D2C6B5A4200EABD11 /* SplashView.swift in Sources */,
 				AED631352C6B5BBC00EABD11 /* SearchReposView.swift in Sources */,
+				AED6313B2C6B62B300EABD11 /* Models.swift in Sources */,
 				AED6310B2C6B5A4200EABD11 /* GitExplorerApp.swift in Sources */,
 				AED631372C6B5BD200EABD11 /* ShowRepoView.swift in Sources */,
 			);
