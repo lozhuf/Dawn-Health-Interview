@@ -52,7 +52,12 @@ class SearchReposViewModel: ObservableObject {
     private var searchReqId: Int = 0
     
     func searchInputChanged(input: String) {
-        guard input.count >= 3 else { return }
+        guard input.count >= 3 else {
+            withAnimation {
+                self.repos = []
+            }
+            return
+        }
         
         Task { [weak self] in
             self?.searchReqId += 1
@@ -62,8 +67,9 @@ class SearchReposViewModel: ObservableObject {
             guard currReqId == self?.searchReqId else {
                 return
             }
-            
-            self?.repos = results ?? []
+            withAnimation {
+                self?.repos = results ?? []
+            }
         }
     }
 }
