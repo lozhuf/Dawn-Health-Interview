@@ -8,24 +8,12 @@
 import Combine
 import SwiftUI
 
-struct GitHubSearchClient {
-    var search: (_ query: String) async throws -> [Repository]
-}
-
-extension GitHubSearchClient {
-    static func dummy(delay: TimeInterval) -> Self {
-        Self { query in
-            try await Task.sleep(for: .seconds(delay))
-            return [.dummy_a, .dummy_b]
-        }
-    }
-}
-
 /**
  TODO:
  - Plural formatter for results count
  - Use Task instead of reqId for cancelling tasks
- - Real live GH client
+ - Issue with async results when clearing search field
+ - 'Searching' state, and clearer error descriptions
  */
 
 @MainActor
@@ -37,7 +25,7 @@ class SearchReposViewModel: ObservableObject {
     private let searchClient: GitHubSearchClient
     private var cancellables: Set<AnyCancellable> = []
     
-    init(searchClient: GitHubSearchClient = .dummy(delay: 0.9)) {
+    init(searchClient: GitHubSearchClient = .live()) {
         self.searchClient = searchClient
         
         // start watching the search field, and debounce the input
@@ -82,7 +70,7 @@ struct SearchReposView: View {
     
     var body: some View {
         
-        VStack(alignment: .leading, spacing: 20) {
+        VStack(alignment: .leading, spacing: 0) {
             VStack(alignment: .leading, spacing: 20) {
                 Text("Repository library")
                     .font(.system(size: 20, weight: .semibold))
@@ -103,12 +91,13 @@ struct SearchReposView: View {
                 .cornerRadius(6)
             }
             .padding(.horizontal, 20)
-            .padding(.vertical, 30)
+            .padding(.top, 30)
+            .padding(.bottom, 10)
             
             ScrollView {
                 if viewModel.repos.isEmpty {
                     emptyState()
-                        .padding(.top, 120)
+                        .padding(.top, 140)
                         .frame(maxWidth: .infinity)
                 } else {
                     VStack(alignment: .leading, spacing: 20) {
@@ -123,6 +112,7 @@ struct SearchReposView: View {
                         }
                     }
                     .padding(.horizontal, 20)
+                    .padding(.vertical, 20)
                 }
             }
         }
@@ -142,13 +132,14 @@ struct SearchReposView: View {
                     .frame(width: 42, height: 42)
                 
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("\(repo.name) / \(repo.orgName)")
+                    Text("\(repo.orgName) / \(repo.name)")
                         .font(.system(size: 16, weight: .medium))
                         .foregroundColor(.dhPrimaryText)
-                        
-                    Text("\(repo.description)")
-                        .font(.system(size: 14, weight: .regular))
-                        .foregroundColor(.dhSecondaryText)
+                    if let desc = repo.description{
+                        Text("\(desc)")
+                            .font(.system(size: 14, weight: .regular))
+                            .foregroundColor(.dhSecondaryText)
+                    }
                 }
                 .lineLimit(1)
                 
@@ -179,5 +170,10 @@ struct SearchReposView: View {
 }
 
 #Preview {
-    SearchReposView(viewModel: SearchReposViewModel(), selectedRepo: .constant(nil))
+    SearchReposView(
+        viewModel: SearchReposViewModel(
+            searchClient: .constant(result: .success([.dummy_a, .dummy_b])).delayed(by: 2).printingErrors()
+        ),
+        selectedRepo: .constant(nil)
+    )
 }

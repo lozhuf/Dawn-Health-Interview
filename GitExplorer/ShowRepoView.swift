@@ -27,19 +27,23 @@ struct ShowRepoView: View {
                     .font(.system(size: 16, weight: .medium))
                     .foregroundColor(.dhPrimaryText)
                     .padding(.bottom, 6)
-                Text("\(repo.language)")
-                    .font(.system(size: 14, weight: .regular))
-                    .foregroundColor(.dhSecondaryText)
-                    .padding(.bottom, 30)
+                if let lang = repo.language {
+                    Text("\(lang)")
+                        .font(.system(size: 14, weight: .regular))
+                        .foregroundColor(.dhSecondaryText)
+                        .padding(.bottom, 30)
+                }
                 
                 VStack(spacing: 0) {
                     dataRow(title: "Forks", value: "\(repo.forkCount.formatted())")
                     
                     dataRow(title: "Issues", value: "\(repo.openIssuesCount.formatted())")
                     
-                    dataRow(title: "Starred by", value: "\(repo.stargazersCount.formatted())")
+                    dataRow(title: "Starred by", value: "\(repo.stargazersCount.formatted())", showDivider: repo.lastReleaseVersion != nil)
                     
-                    dataRow(title: "Last release version", value: "\(repo.lastReleaseVersion)", showDivider: false)
+                    if let version = repo.lastReleaseVersion {
+                        dataRow(title: "Last release version", value: "\(version)", showDivider: false)
+                    }
                 }
                 .padding(.horizontal, 20)
                 .padding(.vertical, 6) // on top of the dataRow's padding
