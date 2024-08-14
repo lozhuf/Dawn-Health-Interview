@@ -11,6 +11,8 @@ struct SplashView: View {
     var body: some View {
         Image("logo")
             .padding()
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color.white)
     }
 }
 
