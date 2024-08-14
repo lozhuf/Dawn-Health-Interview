@@ -19,9 +19,9 @@ struct ShowRepoView: View {
         ScrollView {
             VStack(alignment: .center, spacing: 0) {
                 RepoIconView(url: repo.iconURL)
-                .cornerRadius(6)
-                .frame(width: 100, height: 100)
-                .padding(.bottom, 14)
+                    .cornerRadius(6)
+                    .frame(width: 100, height: 100)
+                    .padding(.bottom, 14)
                 
                 Text("\(repo.name) / \(repo.orgName)")
                     .font(.system(size: 16, weight: .medium))
@@ -52,6 +52,7 @@ struct ShowRepoView: View {
             }
             .padding(.horizontal, 20)
         }
+        .background(Color.white)
     }
     
     @ViewBuilder

@@ -11,7 +11,7 @@ import SwiftUI
 struct GitExplorerApp: App {
     var body: some Scene {
         WindowGroup {
-            SplashView()
+            MainAppView()
         }
     }
 }

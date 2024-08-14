@@ -21,11 +21,17 @@ extension GitHubSearchClient {
     }
 }
 
+/**
+ TODO:
+ - Plural formatter for results count
+ - Use Task instead of reqId for cancelling tasks
+ - Real live GH client
+ */
+
 @MainActor
 class SearchReposViewModel: ObservableObject {
     
-    @Published var repos: [Repository] = [] //[.dummy_a, .dummy_b]
-    
+    @Published var repos: [Repository] = []
     @Published var searchInput: String = ""
     
     private let searchClient: GitHubSearchClient
@@ -62,15 +68,11 @@ class SearchReposViewModel: ObservableObject {
     }
 }
 
-/**
- TODO:
- - Plural formatter for results count
- - Use Task instead of reqId for cancelling tasks
- */
-
 struct SearchReposView: View {
     
     @StateObject var viewModel: SearchReposViewModel = SearchReposViewModel()
+    
+    @Binding var selectedRepo: Repository?
     
     var body: some View {
         
@@ -95,11 +97,12 @@ struct SearchReposView: View {
                 .cornerRadius(6)
             }
             .padding(.horizontal, 20)
+            .padding(.vertical, 30)
             
             ScrollView {
                 if viewModel.repos.isEmpty {
                     emptyState()
-                        .padding(.top, 150)
+                        .padding(.top, 120)
                         .frame(maxWidth: .infinity)
                 } else {
                     VStack(alignment: .leading, spacing: 20) {
@@ -117,27 +120,34 @@ struct SearchReposView: View {
                 }
             }
         }
+        .background(Color.white)
     }
     
     @ViewBuilder
     func repoRow(repo: Repository) -> some View {
-        HStack(alignment: .center, spacing: 16) {
-            RepoIconView(url: repo.iconURL)
-                .frame(width: 42, height: 42)
-                .cornerRadius(6)
-            
-            VStack(alignment: .leading, spacing: 4) {
-                Text("\(repo.name) / \(repo.orgName)")
-                    .font(.system(size: 16, weight: .medium))
-                    .foregroundColor(.dhPrimaryText)
-                    
-                Text("\(repo.description)")
-                    .font(.system(size: 14, weight: .regular))
-                    .foregroundColor(.dhSecondaryText)
+        Button {
+            withAnimation {
+                self.selectedRepo = repo
             }
-            .lineLimit(1)
-            
-            Spacer(minLength: 0)
+        } label: {
+            HStack(alignment: .center, spacing: 16) {
+                RepoIconView(url: repo.iconURL)
+                    .cornerRadius(6)
+                    .frame(width: 42, height: 42)
+                
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("\(repo.name) / \(repo.orgName)")
+                        .font(.system(size: 16, weight: .medium))
+                        .foregroundColor(.dhPrimaryText)
+                        
+                    Text("\(repo.description)")
+                        .font(.system(size: 14, weight: .regular))
+                        .foregroundColor(.dhSecondaryText)
+                }
+                .lineLimit(1)
+                
+                Spacer(minLength: 0)
+            }
         }
     }
     
@@ -163,5 +173,5 @@ struct SearchReposView: View {
 }
 
 #Preview {
-    SearchReposView(viewModel: SearchReposViewModel())
+    SearchReposView(viewModel: SearchReposViewModel(), selectedRepo: .constant(nil))
 }
